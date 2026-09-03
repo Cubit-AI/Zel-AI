@@ -184,6 +184,7 @@
             padding: 8px; border-radius: 8px; margin-bottom: 8px; font-size: 12px; border: 1px solid var(--border);
         }
         .msg-attachment-preview img { max-width: 220px; max-height: 220px; object-fit: contain; border-radius: 6px; }
+        .msg-attachment-preview video { max-width: 260px; max-height: 200px; border-radius: 6px; width: 100%; outline: none; }
 
         .message-bubble pre { background-color: var(--code-bg) !important; padding: 12px; border-radius: 8px; border: 1px solid var(--border); overflow-x: auto; margin: 10px 0; position: relative; }
         .code-copy-btn {
@@ -218,6 +219,113 @@
         .player-close { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 6px; }
         .player-close:hover { color: #ef4444; }
 
+        /* ESTILOS PROFESIONALES PARA ZEL LIVE MEJORADOS (ANIMACIONES ULTRA LINDAS Y PROFESIONALES) */
+        .zel-live-floating-launcher {
+            position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #00b09b, #96c93d);
+            color: white; border: none; border-radius: 50px; padding: 14px 22px; font-size: 15px; font-weight: bold;
+            display: flex; align-items: center; gap: 10px; cursor: pointer; box-shadow: 0 6px 20px rgba(0, 176, 155, 0.4);
+            z-index: 10001; transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .zel-live-floating-launcher:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(0, 176, 155, 0.6); }
+
+        .zel-live-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
+            background: rgba(11, 12, 16, 0.96); backdrop-filter: blur(20px); z-index: 20000;
+            display: none; flex-direction: column; align-items: center; justify-content: space-between;
+            padding: 40px 20px calc(40px + var(--safe-area-bottom)) 20px; color: white;
+            box-sizing: border-box; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .zel-live-overlay.active { display: flex; opacity: 1; }
+
+        .zel-live-top-bar { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; }
+        .zel-live-brand { font-size: 16px; font-weight: bold; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+        .zel-live-close { background: rgba(255,255,255,0.1); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+        .zel-live-close:hover { background: rgba(255,255,255,0.2); }
+
+        .zel-live-core-visualizer { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; flex: 1; width: 100%; max-width: 600px; }
+        
+        /* ORB PROFESIONAL CON ESTADOS ANIMADOS ULTRA LINDOS (IDLE, LISTENING, SPEAKING) */
+        .zel-live-orb {
+            width: 150px; height: 150px; border-radius: 50%;
+            background: radial-gradient(circle, #00b09b 0%, #10a37f 45%, #0b0c10 85%);
+            box-shadow: 0 0 50px rgba(0, 176, 155, 0.5), inset 0 0 35px rgba(255,255,255,0.4);
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        /* Animación cuando está reposando/quieto (Idle): Resplandor sutil, elegante y calmado */
+        .zel-live-orb.state-idle {
+            animation: zelIdlePulse 4s infinite ease-in-out;
+        }
+        @keyframes zelIdlePulse {
+            0% { transform: scale(1); box-shadow: 0 0 35px rgba(0, 176, 155, 0.4), inset 0 0 20px rgba(255,255,255,0.3); }
+            50% { transform: scale(1.04); box-shadow: 0 0 55px rgba(0, 176, 155, 0.6), inset 0 0 35px rgba(255,255,255,0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 35px rgba(0, 176, 155, 0.4), inset 0 0 20px rgba(255,255,255,0.3); }
+        }
+
+        /* Animación cuando está escuchando (Listening): Ondas dinámicas y pulso activo */
+        .zel-live-orb.state-listening {
+            animation: zelListeningPulse 1.8s infinite ease-in-out;
+            background: radial-gradient(circle, #10b981 0%, #059669 50%, #0b0c10 90%);
+            box-shadow: 0 0 70px rgba(16, 185, 129, 0.7), inset 0 0 40px rgba(255,255,255,0.6);
+        }
+        @keyframes zelListeningPulse {
+            0% { transform: scale(0.96); box-shadow: 0 0 40px rgba(16, 185, 129, 0.5); }
+            50% { transform: scale(1.1); box-shadow: 0 0 85px rgba(16, 185, 129, 0.8); }
+            100% { transform: scale(0.96); box-shadow: 0 0 40px rgba(16, 185, 129, 0.5); }
+        }
+
+        /* Animación cuando está hablando (Speaking): Movimiento fluido, vibrante y expresivo */
+        .zel-live-orb.state-speaking {
+            animation: zelSpeakingWave 0.8s infinite alternate ease-in-out;
+            background: radial-gradient(circle, #38bdf8 0%, #0284c7 50%, #0b0c10 90%);
+            box-shadow: 0 0 90px rgba(56, 189, 248, 0.8), inset 0 0 50px rgba(255,255,255,0.7);
+        }
+        @keyframes zelSpeakingWave {
+            0% { transform: scale(1) rotate(0deg); box-shadow: 0 0 60px rgba(56, 189, 248, 0.6); }
+            100% { transform: scale(1.12) rotate(2deg); box-shadow: 0 0 100px rgba(56, 189, 248, 0.9); }
+        }
+
+        .zel-live-status-text { font-size: 16px; font-weight: 500; color: #e2e8f0; text-align: center; min-height: 24px; }
+        .zel-live-subtext { font-size: 12px; color: var(--text-muted); text-align: center; }
+
+        /* NUEVOS CONTENEDORES PROFESIONALES PARA ZEL LIVE: HISTORIAL ESTILO CHATBOT Y CONFIGURACIÓN DE VOZ */
+        .zel-live-panels {
+            display: flex; gap: 15px; width: 100%; max-width: 600px; height: 160px; margin-top: 10px;
+        }
+        .zel-live-history-box {
+            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px;
+            backdrop-filter: blur(10px);
+        }
+        .zel-live-msg {
+            font-size: 12px; padding: 6px 10px; border-radius: 8px; max-width: 85%; line-height: 1.4; word-break: break-word;
+        }
+        .zel-live-msg.user { background: rgba(16, 163, 127, 0.3); align-self: flex-end; color: #f8fafc; border: 1px solid rgba(16, 163, 127, 0.4); }
+        .zel-live-msg.assistant { background: rgba(255,255,255,0.1); align-self: flex-start; color: #e2e8f0; }
+
+        .zel-live-sidebar-settings {
+            width: 180px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px; justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .zel-live-sidebar-settings label { font-size: 10px; color: var(--text-muted); font-weight: bold; text-transform: uppercase; }
+        .zel-live-sidebar-settings select {
+            width: 100%; padding: 6px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);
+            color: white; border-radius: 6px; font-size: 11px; outline: none;
+        }
+
+        .zel-live-controls { display: flex; gap: 15px; align-items: center; justify-content: center; width: 100%; max-width: 400px; margin-top: 10px; }
+        .zel-live-action-btn {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;
+            width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; cursor: pointer; transition: 0.2s; backdrop-filter: blur(10px);
+        }
+        .zel-live-action-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+        .zel-live-action-btn.danger { background: #ef4444; border-color: #ef4444; }
+        .zel-live-action-btn.danger:hover { background: #dc2626; }
+
         .input-wrapper { padding: 12px 15% calc(12px + var(--safe-area-bottom)) 15%; background: linear-gradient(180deg, transparent, var(--bg-color) 30%); flex-shrink: 0; }
         
         .stop-btn-container { text-align: center; margin-bottom: 8px; display: none; }
@@ -229,7 +337,7 @@
             background: var(--sidebar-bg); padding: 6px 12px; border-radius: 8px 8px 0 0;
             border: 1px solid var(--border); border-bottom: none; font-size: 12px; color: var(--accent);
         }
-        .file-preview-bar img { height: 28px; width: 28px; object-fit: cover; border-radius: 4px; margin-right: 6px; vertical-align: middle; }
+        .file-preview-bar img, .file-preview-bar video { height: 28px; width: 28px; object-fit: cover; border-radius: 4px; margin-right: 6px; vertical-align: middle; }
         .file-preview-bar button { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 4px; }
         .file-preview-bar button:hover { color: #ef4444; }
 
@@ -283,6 +391,9 @@
             .input-wrapper { padding: 10px 4% calc(10px + var(--safe-area-bottom)) 4%; }
             .header-stats { display: none; }
             .speech-floating-player { right: 10px; left: 10px; max-width: none; width: calc(100% - 20px); bottom: calc(70px + var(--safe-area-bottom)); }
+            .zel-live-floating-launcher { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 14px; }
+            .zel-live-panels { flex-direction: column; height: 130px; }
+            .zel-live-sidebar-settings { width: 100%; height: auto; }
         }
 
         @media (max-width: 480px) {
@@ -314,6 +425,48 @@
         </div>
     </div>
 
+    <!-- BOTÓN FLOTANTE ESTRATÉGICO ZEL LIVE (ADAPTADO PC Y CELULAR) -->
+    <button class="zel-live-floating-launcher" onclick="openZelLiveModal()" title="Iniciar Zel Live">
+        <i class="fas fa-wave-square"></i> Zel Live
+    </button>
+
+    <!-- INTERFAZ / MODAL ZEL LIVE ESTILO GEMINI LIVE MEJORADO -->
+    <div class="zel-live-overlay" id="zelLiveOverlay">
+        <div class="zel-live-top-bar">
+            <div class="zel-live-brand"><i class="fas fa-circle" style="color: #10a37f; font-size: 10px;"></i> Zel Live Session Pro</div>
+            <button class="zel-live-close" onclick="closeZelLiveModal()"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="zel-live-core-visualizer">
+            <div class="zel-live-orb state-idle" id="zelLiveOrb">
+                <i class="fas fa-microphone" id="zelLiveOrbIcon" style="font-size: 28px; color: white;"></i>
+            </div>
+            <div>
+                <div class="zel-live-status-text" id="zelLiveStatusText">Escuchando atentamente...</div>
+                <div class="zel-live-subtext" id="zelLiveSubText">Habla con naturalidad para conversar en tiempo real con la IA</div>
+            </div>
+
+            <!-- APARTADO NUEVO: HISTORIAL DE CHAT EN VIVO Y SELECTOR DE VOZ DENTRO DE ZEL LIVE -->
+            <div class="zel-live-panels">
+                <div class="zel-live-history-box" id="zelLiveHistoryBox">
+                    <div class="zel-live-msg assistant">¡Hola! Soy Zel Live. Conversemos por voz o revisa nuestro historial aquí.</div>
+                </div>
+                <div class="zel-live-sidebar-settings">
+                    <label>Voz Zel Live</label>
+                    <select id="zelLiveVoiceSelect" onchange="updateZelLiveVoice(this.value)">
+                        <!-- Se llena dinámicamente con las voces disponibles -->
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="zel-live-controls">
+            <button class="zel-live-action-btn" id="zelLiveMicToggle" onclick="toggleZelLiveMic()" title="Silenciar / Activar Micrófono"><i class="fas fa-microphone" id="zelLiveMicIcon"></i></button>
+            <button class="zel-live-action-btn" id="zelLivePauseToggle" onclick="toggleZelLivePause()" title="Pausar / Despausar Conversación"><i class="fas fa-pause" id="zelLivePauseIcon"></i></button>
+            <button class="zel-live-action-btn danger" onclick="closeZelLiveModal()" title="Finalizar Sesión"><i class="fas fa-phone-slash"></i></button>
+        </div>
+    </div>
+
     <div class="speech-floating-player" id="speechPlayerModal">
         <div class="player-info">
             <div class="player-title"><i class="fas fa-waveform-lines"></i> Zel Voice Pro</div>
@@ -340,6 +493,7 @@
             <button class="tab-btn" data-target="tab-scraper"><i class="fas fa-globe"></i> Links</button>
             <button class="tab-btn" data-target="tab-memory"><i class="fas fa-database"></i> Memoria</button>
             <button class="tab-btn" data-target="tab-utils"><i class="fas fa-toolbox"></i> Utils</button>
+            <button class="tab-btn" data-target="tab-history-log"><i class="fas fa-history"></i> Historial</button>
         </div>
 
         <div class="tab-content active" id="tab-chats">
@@ -457,6 +611,19 @@
             </div>
         </div>
 
+        <!-- NUEVO APARTADO: HISTORIAL DE CONVERSACIONES GLOBAL / REGISTRO AVANZADO -->
+        <div class="tab-content" id="tab-history-log">
+            <div class="section-title">Historial de Conversaciones Global</div>
+            <div class="config-group">
+                <label>Buscador en el Archivo de Historiales</label>
+                <input type="text" class="search-box" id="searchGlobalHistoryLog" placeholder="Buscar en todas las conversaciones..." oninput="renderGlobalHistoryLog(this.value)">
+            </div>
+            <div id="globalHistoryLogContainer" style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; overflow-y: auto; max-height: 450px;">
+                <!-- Se llena dinámicamente con JS -->
+            </div>
+            <button class="new-chat-btn" style="background:var(--border); color:var(--text-main); margin-top:10px;" onclick="clearGlobalHistoryLog()"><i class="fas fa-trash-alt"></i> Limpiar Registro Global</button>
+        </div>
+
         <div class="tab-content" id="tab-utils">
             <div class="section-title">Utilidades God Mode</div>
             <button class="new-chat-btn" style="background:var(--border); color:var(--text-main);" onclick="clearAllData()"><i class="fas fa-broom"></i> Limpiar Todo el Almacenamiento</button>
@@ -494,8 +661,8 @@
             </div>
             <div class="input-box" id="inputBoxContainer">
                 <input type="file" id="fileInput" style="display: none;" accept="image/*,video/*,audio/*,.txt,.pdf">
-                <button class="attach-btn" id="attachBtn" title="Adjuntar imagen o archivo"><i class="fas fa-paperclip"></i></button>
-                <textarea id="userInput" class="chat-input-field" placeholder="Escribe un mensaje, pega un enlace o sube una imagen..." rows="1"></textarea>
+                <button class="attach-btn" id="attachBtn" title="Adjuntar imagen, video o archivo"><i class="fas fa-paperclip"></i></button>
+                <textarea id="userInput" class="chat-input-field" placeholder="Escribe un mensaje, pega un enlace o sube una imagen/video..." rows="1"></textarea>
                 <button class="send-btn" id="sendBtn" disabled><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
@@ -508,8 +675,10 @@
         function loadVoices() {
             const rawVoices = window.speechSynthesis.getVoices();
             const voiceSelect = document.getElementById('voiceSelect');
+            const zelLiveVoiceSelect = document.getElementById('zelLiveVoiceSelect');
             if(!voiceSelect) return;
             voiceSelect.innerHTML = '';
+            if(zelLiveVoiceSelect) zelLiveVoiceSelect.innerHTML = '';
             
             speechVoices = rawVoices.filter(v => !v.name.toLowerCase().includes('microsoft'));
             if (speechVoices.length === 0) speechVoices = rawVoices;
@@ -528,6 +697,7 @@
                 opt.value = "native_" + index;
                 opt.textContent = `[Nativa] ${voice.name} (${voice.lang})`;
                 voiceSelect.appendChild(opt);
+                if(zelLiveVoiceSelect) zelLiveVoiceSelect.appendChild(opt.cloneNode(true));
             });
 
             customEnhancedProfiles.forEach((profile) => {
@@ -536,6 +706,7 @@
                 opt.textContent = `⭐ [Perfil Pro] ${profile.name}`;
                 opt.dataset.profile = JSON.stringify(profile);
                 voiceSelect.appendChild(opt);
+                if(zelLiveVoiceSelect) zelLiveVoiceSelect.appendChild(opt.cloneNode(true));
             });
         }
 
@@ -573,6 +744,231 @@
                 backdrop.classList.remove('active');
             }
         };
+
+        // LÓGICA ZEL LIVE MEJORADA CON HISTORIAL DE CHAT, PAUSA/DESPAUSA Y CAMBIO DE VOZ
+        let zelLiveRecognition = null;
+        let isZelLiveMuted = false;
+        let isZelLivePaused = false;
+        let selectedZelLiveVoiceVal = '';
+
+        window.openZelLiveModal = () => {
+            const overlay = document.getElementById('zelLiveOverlay');
+            overlay.classList.add('active');
+            isZelLivePaused = false;
+            document.getElementById('zelLivePauseIcon').className = "fas fa-pause";
+            setZelLiveOrbState('idle', 'Escuchando atentamente...');
+            startZelLiveVoiceEngine();
+        };
+
+        window.closeZelLiveModal = () => {
+            const overlay = document.getElementById('zelLiveOverlay');
+            overlay.classList.remove('active');
+            if (zelLiveRecognition) {
+                try { zelLiveRecognition.stop(); } catch(e) {}
+            }
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        };
+
+        window.toggleZelLiveMic = () => {
+            isZelLiveMuted = !isZelLiveMuted;
+            const micIcon = document.getElementById('zelLiveMicIcon');
+            const micBtn = document.getElementById('zelLiveMicToggle');
+            
+            if (isZelLiveMuted) {
+                micIcon.className = "fas fa-microphone-slash";
+                micBtn.style.background = "#ef4444";
+                setZelLiveOrbState('idle', 'Micrófono silenciado');
+                if (zelLiveRecognition) try { zelLiveRecognition.stop(); } catch(e){}
+            } else {
+                micIcon.className = "fas fa-microphone";
+                micBtn.style.background = "rgba(255,255,255,0.1)";
+                setZelLiveOrbState('listening', 'Escuchando atentamente...');
+                startZelLiveVoiceEngine();
+            }
+        };
+
+        window.toggleZelLivePause = () => {
+            isZelLivePaused = !isZelLivePaused;
+            const pauseIcon = document.getElementById('zelLivePauseIcon');
+            const pauseBtn = document.getElementById('zelLivePauseToggle');
+
+            if (isZelLivePaused) {
+                pauseIcon.className = "fas fa-play";
+                pauseBtn.style.background = "#eab308";
+                setZelLiveOrbState('idle', 'Sesión en Vivo en Pausa');
+                if (zelLiveRecognition) try { zelLiveRecognition.stop(); } catch(e){}
+                if (window.speechSynthesis) window.speechSynthesis.pause();
+                appendZelLiveHistoryMessage("system", "⏸️ [Sesión en Vivo pausada por el usuario]");
+            } else {
+                pauseIcon.className = "fas fa-pause";
+                pauseBtn.style.background = "rgba(255,255,255,0.1)";
+                setZelLiveOrbState('listening', 'Escuchando atentamente...');
+                if (window.speechSynthesis && window.speechSynthesis.paused) {
+                    window.speechSynthesis.resume();
+                } else {
+                    startZelLiveVoiceEngine();
+                }
+                appendZelLiveHistoryMessage("system", "▶️ [Sesión en Vivo reanudada]");
+            }
+        };
+
+        window.updateZelLiveVoice = (voiceVal) => {
+            selectedZelLiveVoiceVal = voiceVal;
+            appendZelLiveHistoryMessage("system", `⚙️ [Voz de Zel Live actualizada]`);
+        };
+
+        function appendZelLiveHistoryMessage(sender, text) {
+            const historyBox = document.getElementById('zelLiveHistoryBox');
+            if(!historyBox) return;
+            const div = document.createElement('div');
+            if(sender === 'user') {
+                div.className = 'zel-live-msg user';
+                div.textContent = `Tú: ${text}`;
+            } else if(sender === 'assistant') {
+                div.className = 'zel-live-msg assistant';
+                div.textContent = `Zel: ${text}`;
+            } else {
+                div.style.cssText = "font-size: 11px; color: var(--text-muted); text-align: center; font-style: italic; margin: 4px 0;";
+                div.textContent = text;
+            }
+            historyBox.appendChild(div);
+            historyBox.scrollTop = historyBox.scrollHeight;
+        }
+
+        function setZelLiveOrbState(state, statusText) {
+            const orb = document.getElementById('zelLiveOrb');
+            const orbIcon = document.getElementById('zelLiveOrbIcon');
+            const statusTxtEl = document.getElementById('zelLiveStatusText');
+            
+            if(!orb) return;
+            orb.className = "zel-live-orb state-" + state;
+            if(statusTxtEl) statusTxtEl.textContent = statusText;
+
+            if (state === 'idle') {
+                orbIcon.className = "fas fa-microphone";
+            } else if (state === 'listening') {
+                orbIcon.className = "fas fa-ear-listen";
+            } else if (state === 'speaking') {
+                orbIcon.className = "fas fa-volume-high";
+            }
+        }
+
+        function startZelLiveVoiceEngine() {
+            if (isZelLivePaused || isZelLiveMuted) return;
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                setZelLiveOrbState('idle', 'Tu navegador no soporta reconocimiento de voz directo.');
+                return;
+            }
+            
+            if (zelLiveRecognition) {
+                try { zelLiveRecognition.stop(); } catch(e){}
+            }
+
+            zelLiveRecognition = new SpeechRecognition();
+            zelLiveRecognition.lang = 'es-ES';
+            zelLiveRecognition.interimResults = false;
+            zelLiveRecognition.maxAlternatives = 1;
+
+            zelLiveRecognition.onstart = () => {
+                if(!isZelLiveMuted && !isZelLivePaused) {
+                    setZelLiveOrbState('listening', 'Escuchando atentamente...');
+                }
+            };
+
+            zelLiveRecognition.onresult = async (event) => {
+                if (isZelLivePaused) return;
+                const userSpeech = event.results[0][0].transcript;
+                appendZelLiveHistoryMessage('user', userSpeech);
+                setZelLiveOrbState('listening', `Procesando voz...`);
+                document.getElementById('zelLiveSubText').textContent = "Zel AI analizando respuesta en tiempo real...";
+                
+                try {
+                    const reply = await queryZelLiveAI(userSpeech);
+                    appendZelLiveHistoryMessage('assistant', reply);
+                    setZelLiveOrbState('speaking', 'Zel AI respondiendo...');
+                    speakZelLiveOutput(reply);
+                } catch(err) {
+                    setZelLiveOrbState('idle', 'Error al conectar con el servidor en tiempo real.');
+                }
+            };
+
+            zelLiveRecognition.onerror = () => {
+                if(!isZelLiveMuted && !isZelLivePaused) {
+                    setTimeout(() => {
+                        try { zelLiveRecognition.start(); } catch(e){}
+                    }, 1000);
+                }
+            };
+
+            zelLiveRecognition.onend = () => {
+                if (!isZelLiveMuted && !isZelLivePaused && document.getElementById('zelLiveOverlay').classList.contains('active')) {
+                    try { zelLiveRecognition.start(); } catch(e){}
+                }
+            };
+
+            try {
+                zelLiveRecognition.start();
+            } catch(e) {}
+        }
+
+        async function queryZelLiveAI(promptText) {
+            const messages = [
+                { role: "system", content: "Eres Zel Live, un asistente de voz fluido, profesional, culto y 100% conversacional. Responde de forma muy concisa, natural, elegante y directa para lectura por voz (máximo 2 o 3 frases)." },
+                { role: "user", content: promptText }
+            ];
+            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                method: 'POST',
+                headers: { 
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'Content-Type': 'application/json',
+                    'HTTP-Referer': window.location.href,
+                    'X-Title': 'Zel AI Live Pro'
+                },
+                body: JSON.stringify({ model: "openrouter/free", messages: messages, temperature: 0.7 })
+            });
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
+
+        function speakZelLiveOutput(text) {
+            if (!window.speechSynthesis || isZelLivePaused) return;
+            window.speechSynthesis.cancel();
+            const cleanText = text.replace(/[*_`#\[\]()]/g, '');
+            const utter = new SpeechSynthesisUtterance(cleanText);
+            
+            // Aplicar configuración de voz seleccionada en Zel Live
+            if (selectedZelLiveVoiceVal && selectedZelLiveVoiceVal.startsWith('native_')) {
+                const nativeIndex = parseInt(selectedZelLiveVoiceVal.split('_')[1]);
+                if (speechVoices[nativeIndex]) utter.voice = speechVoices[nativeIndex];
+                utter.pitch = 1.0;
+                utter.rate = 1.02;
+            } else if (selectedZelLiveVoiceVal && selectedZelLiveVoiceVal.startsWith('custom_')) {
+                const optionEl = document.querySelector(`#zelLiveVoiceSelect option[value="${selectedZelLiveVoiceVal}"]`);
+                if (optionEl && optionEl.dataset.profile) {
+                    const profile = JSON.parse(optionEl.dataset.profile);
+                    const baseVoice = speechVoices.find(v => v.lang.startsWith(profile.lang.slice(0, 2))) || speechVoices[0];
+                    if (baseVoice) utter.voice = baseVoice;
+                    utter.pitch = profile.pitch;
+                    utter.rate = profile.rate;
+                }
+            } else if (speechVoices.length > 0) {
+                const spanishVoice = speechVoices.find(v => v.lang.startsWith('es')) || speechVoices[0];
+                utter.voice = spanishVoice;
+                utter.rate = 1.02;
+            }
+
+            utter.onend = () => {
+                document.getElementById('zelLiveSubText').textContent = "Habla con naturalidad para conversar en tiempo real con la IA";
+                if (!isZelLiveMuted && !isZelLivePaused && document.getElementById('zelLiveOverlay').classList.contains('active')) {
+                    setZelLiveOrbState('listening', 'Escuchando atentamente...');
+                    startZelLiveVoiceEngine();
+                } else {
+                    setZelLiveOrbState('idle', 'Sesión en pausa o silenciada');
+                }
+            };
+            window.speechSynthesis.speak(utter);
+        }
 
         const playerModal = document.getElementById('speechPlayerModal');
         let isDragging = false, dragStartX = 0, dragStartY = 0, initialLeft = 0, initialTop = 0;
@@ -637,7 +1033,7 @@
             const custom = customEl ? customEl.value.trim() : '';
             const memory = getGlobalMemory();
 
-            let base = `Eres ZEL AI V9.5 GOD MODE, un asistente digital y analista web avanzado. `;
+            let base = `Eres ZEL AI V9.5 GOD MODE, un asistente digital y analista multimedia avanzado. `;
             if(role === 'investigador') base += "Actúas como un investigador analítico especializado en contraste de fuentes. ";
             if(role === 'programador') base += "Actúas como un arquitecto de software y programador senior experto. ";
             if(role === 'creativo') base += "Actúas como un escritor creativo y experto en marketing. ";
@@ -688,6 +1084,9 @@
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 e.currentTarget.classList.add('active');
                 document.getElementById(e.currentTarget.dataset.target).classList.add('active');
+                if (e.currentTarget.dataset.target === 'tab-history-log') {
+                    renderGlobalHistoryLog();
+                }
             });
         });
 
@@ -728,8 +1127,17 @@
             const reader = new FileReader();
             reader.onload = function(uploadEvent) {
                 const isImage = file.type.startsWith('image/');
-                attachedFile = { name: file.name, type: file.type, dataBase64: uploadEvent.target.result, isImage };
-                DOM.fileNameDisplay.innerHTML = isImage ? `<img src="${uploadEvent.target.result}"> <span>${file.name}</span>` : `<i class="fas fa-file-alt"></i> <span>${file.name}</span>`;
+                const isVideo = file.type.startsWith('video/');
+                attachedFile = { name: file.name, type: file.type, dataBase64: uploadEvent.target.result, isImage, isVideo };
+                
+                if (isImage) {
+                    DOM.fileNameDisplay.innerHTML = `<img src="${uploadEvent.target.result}"> <span>${file.name}</span>`;
+                } else if (isVideo) {
+                    DOM.fileNameDisplay.innerHTML = `<video src="${uploadEvent.target.result}" muted></video> <span>${file.name} (Video listo)</span>`;
+                } else {
+                    DOM.fileNameDisplay.innerHTML = `<i class="fas fa-file-alt"></i> <span>${file.name}</span>`;
+                }
+
                 DOM.filePreviewBar.style.display = 'flex';
                 DOM.inputBoxContainer.classList.add('has-file-attached');
                 DOM.sendBtn.disabled = false;
@@ -762,6 +1170,9 @@
         const saveLocal = () => {
             localStorage.setItem('zel_v90_chats', JSON.stringify(chats));
             updateStorageStats();
+            if(document.getElementById('tab-history-log').classList.contains('active')) {
+                renderGlobalHistoryLog();
+            }
         };
 
         const updateStorageStats = () => {
@@ -809,6 +1220,54 @@
         };
 
         DOM.searchChats.addEventListener('input', e => renderChatList(e.target.value));
+
+        // FUNCIONALIDAD DEL NUEVO APARTADO: HISTORIAL DE CONVERSACIONES GLOBAL
+        window.renderGlobalHistoryLog = (filterQuery = '') => {
+            const container = document.getElementById('globalHistoryLogContainer');
+            if(!container) return;
+            container.innerHTML = '';
+
+            const allChats = Object.values(chats).sort((a,b) => b.updated - a.updated);
+            if (allChats.length === 0) {
+                container.innerHTML = `<div style="font-size:12px; color:var(--text-muted); text-align:center; padding:15px;">No hay conversaciones en el historial.</div>`;
+                return;
+            }
+
+            allChats.forEach(chat => {
+                const dateStr = new Date(chat.updated).toLocaleString();
+                const userMsgsCount = chat.history.filter(m => m.role === 'user').length;
+                const matchFilter = filterQuery === '' || chat.title.toLowerCase().includes(filterQuery.toLowerCase()) || chat.history.some(m => typeof m.content === 'string' && m.content.toLowerCase().includes(filterQuery.toLowerCase()));
+                if(!matchFilter) return;
+
+                const card = document.createElement('div');
+                card.style.cssText = "background:var(--bg-color); border:1px solid var(--border); border-radius:8px; padding:10px; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:0.2s;";
+                card.onmouseover = () => card.style.borderColor = "var(--accent)";
+                card.onmouseout = () => card.style.borderColor = "var(--border)";
+                card.onclick = () => {
+                    loadChat(chat.id);
+                    document.querySelector('.tab-btn[data-target="tab-chats"]').click();
+                    toggleMobileSidebar(false);
+                };
+
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-weight:bold; font-size:13px; color:var(--accent);">${chat.title || 'Sin título'}</span>
+                        <span style="font-size:10px; color:var(--text-muted);">${dateStr}</span>
+                    </div>
+                    <div style="font-size:11px; color:var(--text-muted);">Mensajes de usuario: ${userMsgsCount} | Última actividad registrada</div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        window.clearGlobalHistoryLog = () => {
+            if(confirm("¿Estás seguro de que deseas limpiar y reiniciar todas las conversaciones del historial?")) {
+                chats = {};
+                saveLocal();
+                createNewChat();
+                renderGlobalHistoryLog();
+            }
+        };
 
         window.togglePinChat = (id) => { chats[id].pinned = !chats[id].pinned; saveLocal(); renderChatList(DOM.searchChats.value); };
         window.renameChat = (id) => {
@@ -906,7 +1365,17 @@
             div.dataset.id = msgId;
 
             const avatar = role === 'user' ? '<i class="fas fa-user"></i>' : 'Z';
-            let attachHtml = attachment && attachment.isImage ? `<div class="msg-attachment-preview"><img src="${attachment.dataBase64}"><span>${attachment.name}</span></div>` : '';
+            
+            let attachHtml = '';
+            if (attachment) {
+                if (attachment.isImage) {
+                    attachHtml = `<div class="msg-attachment-preview"><img src="${attachment.dataBase64}"><span>${attachment.name}</span></div>`;
+                } else if (attachment.isVideo) {
+                    attachHtml = `<div class="msg-attachment-preview"><video src="${attachment.dataBase64}" controls></video><span>${attachment.name} (Video listo)</span></div>`;
+                } else {
+                    attachHtml = `<div class="msg-attachment-preview"><i class="fas fa-file-alt"></i><span>${attachment.name}</span></div>`;
+                }
+            }
 
             let toolsHtml = '';
             if(role === 'assistant') {
@@ -1058,6 +1527,14 @@
 
             DOM.typingIndicator.style.display = 'flex';
             try {
+                if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                    const fullPrompt = `${instruction}\n\nEnlace de video analizado: ${url}`;
+                    DOM.userInput.value = fullPrompt;
+                    document.querySelector('.tab-btn[data-target="tab-chats"]').click();
+                    handleSend();
+                    return;
+                }
+
                 const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
                 const res = await fetch(proxyUrl);
                 const data = await res.json();
@@ -1118,6 +1595,8 @@
                     { type: "text", text: text || "Analiza esta imagen con precisión absoluta." },
                     { type: "image_url", image_url: { url: currentAttachment.dataBase64 } }
                 ];
+            } else if (currentAttachment && currentAttachment.isVideo) {
+                apiContent = `${text}\n\n[Video adjunto procesado: ${currentAttachment.name}]`;
             } else if (currentAttachment) {
                 apiContent = `${text}\n\n[Documento adjunto: ${currentAttachment.name}]`;
             }
@@ -1131,7 +1610,7 @@
             chat.updated = Date.now();
             
             saveLocal(); renderChatList(DOM.searchChats.value); 
-            renderMessage('user', text || `Archivo: ${currentAttachment.name}`, msgId, currentAttachment); 
+            renderMessage('user', text || `Archivo multimedia: ${currentAttachment.name}`, msgId, currentAttachment); 
             updateStats();
             DOM.chatHistory.scrollTop = DOM.chatHistory.scrollHeight;
             
