@@ -219,13 +219,15 @@
         .player-close { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 6px; }
         .player-close:hover { color: #ef4444; }
 
-        /* ESTILOS PROFESIONALES PARA ZEL LIVE MEJORADOS (ANIMACIONES ULTRA LINDAS Y PROFESIONALES) */
+        /* BOTÓN ZEL LIVE FLOTANTE ARRASTRABLE CON ANIMACIÓN PROFESIONAL SUAVE */
         .zel-live-floating-launcher {
             position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #00b09b, #96c93d);
             color: white; border: none; border-radius: 50px; padding: 14px 22px; font-size: 15px; font-weight: bold;
-            display: flex; align-items: center; gap: 10px; cursor: pointer; box-shadow: 0 6px 20px rgba(0, 176, 155, 0.4);
-            z-index: 10001; transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex; align-items: center; gap: 10px; cursor: grab; box-shadow: 0 6px 20px rgba(0, 176, 155, 0.4);
+            z-index: 10001; transition: box-shadow 0.2s ease, transform 0.2s ease;
+            user-select: none; touch-action: none;
         }
+        .zel-live-floating-launcher:active { cursor: grabbing; transform: scale(0.96); }
         .zel-live-floating-launcher:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(0, 176, 155, 0.6); }
 
         .zel-live-overlay {
@@ -254,7 +256,6 @@
             transition: all 0.4s ease;
         }
         
-        /* Animación cuando está reposando/quieto (Idle): Resplandor sutil, elegante y calmado */
         .zel-live-orb.state-idle {
             animation: zelIdlePulse 4s infinite ease-in-out;
         }
@@ -264,7 +265,6 @@
             100% { transform: scale(1); box-shadow: 0 0 35px rgba(0, 176, 155, 0.4), inset 0 0 20px rgba(255,255,255,0.3); }
         }
 
-        /* Animación cuando está escuchando (Listening): Ondas dinámicas y pulso activo */
         .zel-live-orb.state-listening {
             animation: zelListeningPulse 1.8s infinite ease-in-out;
             background: radial-gradient(circle, #10b981 0%, #059669 50%, #0b0c10 90%);
@@ -276,7 +276,6 @@
             100% { transform: scale(0.96); box-shadow: 0 0 40px rgba(16, 185, 129, 0.5); }
         }
 
-        /* Animación cuando está hablando (Speaking): Movimiento fluido, vibrante y expresivo */
         .zel-live-orb.state-speaking {
             animation: zelSpeakingWave 0.8s infinite alternate ease-in-out;
             background: radial-gradient(circle, #38bdf8 0%, #0284c7 50%, #0b0c10 90%);
@@ -290,7 +289,6 @@
         .zel-live-status-text { font-size: 16px; font-weight: 500; color: #e2e8f0; text-align: center; min-height: 24px; }
         .zel-live-subtext { font-size: 12px; color: var(--text-muted); text-align: center; }
 
-        /* NUEVOS CONTENEDORES PROFESIONALES PARA ZEL LIVE: HISTORIAL ESTILO CHATBOT Y CONFIGURACIÓN DE VOZ */
         .zel-live-panels {
             display: flex; gap: 15px; width: 100%; max-width: 600px; height: 160px; margin-top: 10px;
         }
@@ -425,7 +423,7 @@
         </div>
     </div>
 
-    <!-- BOTÓN FLOTANTE ESTRATÉGICO ZEL LIVE (ADAPTADO PC Y CELULAR) -->
+    <!-- BOTÓN FLOTANTE ESTRATÉGICO ZEL LIVE (ARRASTRABLE Y ADAPTADO) -->
     <button class="zel-live-floating-launcher" onclick="openZelLiveModal()" title="Iniciar Zel Live">
         <i class="fas fa-wave-square"></i> Zel Live
     </button>
@@ -446,7 +444,6 @@
                 <div class="zel-live-subtext" id="zelLiveSubText">Habla con naturalidad para conversar en tiempo real con la IA</div>
             </div>
 
-            <!-- APARTADO NUEVO: HISTORIAL DE CHAT EN VIVO Y SELECTOR DE VOZ DENTRO DE ZEL LIVE -->
             <div class="zel-live-panels">
                 <div class="zel-live-history-box" id="zelLiveHistoryBox">
                     <div class="zel-live-msg assistant">¡Hola! Soy Zel Live. Conversemos por voz o revisa nuestro historial aquí.</div>
@@ -454,7 +451,6 @@
                 <div class="zel-live-sidebar-settings">
                     <label>Voz Zel Live</label>
                     <select id="zelLiveVoiceSelect" onchange="updateZelLiveVoice(this.value)">
-                        <!-- Se llena dinámicamente con las voces disponibles -->
                     </select>
                 </div>
             </div>
@@ -547,12 +543,13 @@
         <div class="tab-content" id="tab-persona">
             <div class="section-title">Motor de IA</div>
             <div class="config-group">
-                <label>Modelo IA Activo</label>
+                <label>Modelo IA Activo (Actuales y Gratuitos)</label>
                 <select id="modelSelect">
-                    <option value="openrouter/free" selected>Ruteo Automático Gratuito (Auto-Load Balancer)</option>
-                    <option value="google/gemini-2.5-flash">Google Gemini Flash</option>
-                    <option value="meta-llama/llama-3.1-70b-instruct">Llama 3.1 70B (Razonamiento Avanzado)</option>
-                    <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
+                    <option value="openrouter/free" selected>Ruteo Automático Gratuito (Auto-Load Balancer ilimitado)</option>
+                    <option value="google/gemini-2.5-flash">Google Gemini 2.5 Flash</option>
+                    <option value="deepseek/deepseek-r1:free">DeepSeek R1 (Gratis)</option>
+                    <option value="qwen/qwen-2.5-7b-instruct:free">Qwen 2.5 7B Instruct (Gratis)</option>
+                    <option value="nvidia/nemotron-3-8b-instruct:free">NVIDIA Nemotron 3 Ultra (Gratis)</option>
                 </select>
             </div>
             <div class="config-group">
@@ -611,7 +608,6 @@
             </div>
         </div>
 
-        <!-- NUEVO APARTADO: HISTORIAL DE CONVERSACIONES GLOBAL / REGISTRO AVANZADO -->
         <div class="tab-content" id="tab-history-log">
             <div class="section-title">Historial de Conversaciones Global</div>
             <div class="config-group">
@@ -619,7 +615,6 @@
                 <input type="text" class="search-box" id="searchGlobalHistoryLog" placeholder="Buscar en todas las conversaciones..." oninput="renderGlobalHistoryLog(this.value)">
             </div>
             <div id="globalHistoryLogContainer" style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; overflow-y: auto; max-height: 450px;">
-                <!-- Se llena dinámicamente con JS -->
             </div>
             <button class="new-chat-btn" style="background:var(--border); color:var(--text-main); margin-top:10px;" onclick="clearGlobalHistoryLog()"><i class="fas fa-trash-alt"></i> Limpiar Registro Global</button>
         </div>
@@ -669,7 +664,7 @@
     </div>
 
     <script>
-        const API_KEY = "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";
+        const API_KEY = "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";
         let speechVoices = [];
 
         function loadVoices() {
@@ -731,7 +726,52 @@
             localStorage.setItem('zel_v9_pref_opacity', e.target.value);
         });
 
-        // FUNCIONES DE CONTROL MÓVIL
+        // DRAG AND DROP PROFESIONAL Y SUAVE PARA EL BOTÓN ZEL LIVE
+        const zelLauncher = document.querySelector('.zel-live-floating-launcher');
+        let isLauncherDragging = false;
+        let launcherStartX = 0, launcherStartY = 0;
+        let launcherInitialX = 0, launcherInitialY = 0;
+
+        zelLauncher.addEventListener('pointerdown', (e) => {
+            isLauncherDragging = true;
+            zelLauncher.setPointerCapture(e.pointerId);
+            zelLauncher.style.transition = 'none';
+            
+            const rect = zelLauncher.getBoundingClientRect();
+            launcherInitialX = rect.left;
+            launcherInitialY = rect.top;
+            
+            launcherStartX = e.clientX;
+            launcherStartY = e.clientY;
+            e.preventDefault();
+        });
+
+        zelLauncher.addEventListener('pointermove', (e) => {
+            if (!isLauncherDragging) return;
+            const dx = e.clientX - launcherStartX;
+            const dy = e.clientY - launcherStartY;
+            
+            let newX = launcherInitialX + dx;
+            let newY = launcherInitialY + dy;
+            
+            const maxX = window.innerWidth - zelLauncher.offsetWidth;
+            const maxY = window.innerHeight - zelLauncher.offsetHeight;
+            newX = Math.max(10, Math.min(newX, maxX - 10));
+            newY = Math.max(10, Math.min(newY, maxY - 10));
+            
+            zelLauncher.style.left = newX + 'px';
+            zelLauncher.style.top = newY + 'px';
+            zelLauncher.style.right = 'auto';
+            zelLauncher.style.bottom = 'auto';
+        });
+
+        zelLauncher.addEventListener('pointerup', (e) => {
+            if (!isLauncherDragging) return;
+            isLauncherDragging = false;
+            zelLauncher.releasePointerCapture(e.pointerId);
+            zelLauncher.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        });
+
         window.toggleMobileSidebar = (forceState) => {
             const sidebar = document.getElementById('sidebar');
             const backdrop = document.getElementById('mobileBackdrop');
@@ -745,7 +785,6 @@
             }
         };
 
-        // LÓGICA ZEL LIVE MEJORADA CON HISTORIAL DE CHAT, PAUSA/DESPAUSA Y CAMBIO DE VOZ
         let zelLiveRecognition = null;
         let isZelLiveMuted = false;
         let isZelLivePaused = false;
@@ -937,7 +976,6 @@
             const cleanText = text.replace(/[*_`#\[\]()]/g, '');
             const utter = new SpeechSynthesisUtterance(cleanText);
             
-            // Aplicar configuración de voz seleccionada en Zel Live
             if (selectedZelLiveVoiceVal && selectedZelLiveVoiceVal.startsWith('native_')) {
                 const nativeIndex = parseInt(selectedZelLiveVoiceVal.split('_')[1]);
                 if (speechVoices[nativeIndex]) utter.voice = speechVoices[nativeIndex];
@@ -1221,7 +1259,6 @@
 
         DOM.searchChats.addEventListener('input', e => renderChatList(e.target.value));
 
-        // FUNCIONALIDAD DEL NUEVO APARTADO: HISTORIAL DE CONVERSACIONES GLOBAL
         window.renderGlobalHistoryLog = (filterQuery = '') => {
             const container = document.getElementById('globalHistoryLogContainer');
             if(!container) return;
@@ -1498,7 +1535,16 @@
 
         window.regenerateAssistantMessage = (msgId) => {
             const chat = chats[currentChatId];
-            const msgIndex = chat.history.findIndex(m => m.id === msgId);
+            if (!chat) return;
+            let msgIndex = chat.history.findIndex(m => m.id === msgId);
+            if (msgIndex === -1) {
+                for (let i = chat.history.length - 1; i >= 0; i--) {
+                    if (chat.history[i].role === 'assistant') {
+                        msgIndex = i;
+                        break;
+                    }
+                }
+            }
             if (msgIndex <= 0) return;
             chat.history = chat.history.slice(0, msgIndex);
             saveLocal();
